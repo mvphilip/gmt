@@ -94,12 +94,13 @@
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gallery.html">Example Gallery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">GMT Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">GMT Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cookbook.html">GMT Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cookbook.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
@@ -108,13 +109,13 @@
 <li class="toctree-l1"><a class="reference internal" href="users-contrib-symbols.html">Users Symbol Contributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deprecated-defaults.html">Deprecated GMT Defaults Names</a></li>
-<li class="toctree-l1"><a class="reference internal" href="switching.html">Switching between different GMT versions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="migrating.html">Migrating from an earlier GMT version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="switching.html">Switching between different versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrating.html">Migrating from an earlier version</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Classic Mode</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="std-opts-classic.html">Common Options (Classic Mode)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules-classic.html">GMT Modules (Classic Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules-classic.html">Modules (Classic Mode)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Resources</span></p>
 <ul>
@@ -188,7 +189,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">GMT Modules</a> &raquo;</li>
+          <li><a href="modules.html">Modules</a> &raquo;</li>
         
       <li>events</li>
     
@@ -246,12 +247,13 @@
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>Reads (<em>x</em>, <em>y</em>[, <em>z</em>] [, <em>size</em>], <em>time</em> [, <em>length</em>]) data from <em>table</em> [or standard
+<p>Reads (<em>x</em>, <em>y</em>[, <em>z</em>] [, <em>size</em>], <em>time</em> [, <em>length</em>] [, <em>label</em>]) data from <em>table</em> [or standard
 input] and plots how the symbol for each event should look for the specified <em>now</em> time.
 The reason they may differ is that events may have different lengths and we may
 wish to accentuate the symbol attributes in ways to draw attention to an event when
 it first happens and perhaps tone it down after a while to reduce clutter and focus
-on more recent events. This module is typically used in conjunction with <a class="reference internal" href="movie.html"><span class="doc">movie</span></a>
+on more recent events. Optionally, each symbol may have a label that can be displayed at the
+same time or delayed with respect to the symbol. This module is typically used in conjunction with <a class="reference internal" href="movie.html"><span class="doc">movie</span></a>
 where the implicit loop over time is used to call it over a time-sequence and
 thus plot symbols as events unfold.</p>
 </div>
@@ -274,11 +276,14 @@ from the data file’s third column (fourth if <strong>-C</strong> is used). <st
 are available in <a class="reference internal" href="psxy.html"><span class="doc">psxy</span></a> can be used here.  At the moment we only support the basic
 symbols and custom symbols; bars, vectors, ellipses, fronts, decorated and quoted lines cannot
 be specified.  Symbols sizes read from a data file will be assumed to be in the unit controlled
-by <a class="reference internal" href="gmt.conf.html#term-proj-length-unit"><span class="xref std std-term">PROJ_LENGTH_UNIT</span></a> unless they have <strong>c</strong>, <strong>i</strong>, or <strong>p</strong> appended.</dd>
+by <a class="reference internal" href="gmt.conf.html#term-proj-length-unit"><span class="xref std std-term">PROJ_LENGTH_UNIT</span></a> unless they have <strong>c</strong>, <strong>i</strong>, or <strong>p</strong> appended.  If you are only
+plotting labels then <strong>-S</strong> is not required.</dd>
 </dl>
 <dl class="docutils" id="t">
 <dt><strong>-T</strong><em>now</em></dt>
-<dd>Set the current plot time.  If absolute times are used you must also use <strong>-fT</strong>.</dd>
+<dd>Set the current plot time. The time shifts and increments set in <strong>-E</strong> are all relative to this
+current time.  If an absolute time is given you may need to  use <a class="reference internal" href="gmt.conf.html#term-time-unit"><span class="xref std std-term">TIME_UNIT</span></a> to indicate
+the unit of the values given in options like <strong>-E</strong> and <strong>-L</strong>.</dd>
 </dl>
 </div>
 <div class="section" id="optional-arguments">
@@ -317,8 +322,10 @@ the duration of the event), <strong>+r</strong> to indicate the
 duration of the rise phase, <strong>+p</strong> to set the duration of the plateau phase, <strong>+d</strong>
 to specify the duration of the decay phase, and <strong>+f</strong> to set the duration of the
 fade phase.  These are all optional [and default to zero], and can be set separately for symbols and texts.
-If neither <strong>s</strong> or <strong>t</strong> is given then we set the time knots for both features. Note that <strong>+l</strong> is
-restricted to <strong>-Et</strong> and specifies an alternative duration (visibility) of the text [same duration as symbol].</dd>
+If neither <strong>s</strong> or <strong>t</strong> is given then we set the time knots for both features. <strong>Note</strong>: The <strong>+l</strong> modifier is
+restricted to <strong>-Et</strong> and specifies an alternative duration (visibility) of the text [same duration as symbol].
+Furthermore, the <strong>+p</strong> and <strong>+d</strong> periods do not apply to text labels.  <strong>Note</strong>: The <strong>-Et</strong> option is
+required if you wish to plot labels [plot symbols only].</dd>
 </dl>
 <dl class="docutils" id="f">
 <dt><strong>-F</strong>[<strong>+a</strong><em>angle</em>][<strong>+f</strong><em>font</em>][<strong>+j</strong><em>justify</em>][<strong>+r</strong>[<em>first</em>]|<strong>z</strong>[<em>format</em>]]</dt>
@@ -418,6 +425,21 @@ any module-specific option (but not the GMT common options), then exit.</dd>
 <dd>Temporarily override a GMT default setting; repeatable. See <a class="reference internal" href="gmt.conf.html"><span class="doc">gmt.conf</span></a> for parameters.</dd>
 </dl>
 </div>
+<div class="section" id="the-meaning-of-time">
+<h2>The meaning of time<a class="headerlink" href="#the-meaning-of-time" title="Permalink to this headline">¶</a></h2>
+<p>While normally the meaning of “time” (e.g., such as in the argument to <strong>-T</strong>)
+is in fact the time of the phenomenon being plotted, it may also be any other monotonically
+increasing quantity of convenience, such as elapsed time, model time, frame number, or other physical
+quantities such as distance.  It all depends on the context of the movie.  The values
+given for delays, fades, etc. in <strong>-E</strong> are assumed to be in the same unit as the
+given <em>time</em> argument to <strong>-T</strong>.  Thus, if <em>time</em> is a monotonically increasing frame
+counter then the values in <strong>-E</strong> and <strong>-L</strong> refer to number of frames.  A special
+situation occurs when <em>time</em> is in fact actual calendar time given by date/clock markers.
+Here, the unit of the arguments in <strong>-E</strong> and <strong>-L</strong> is determined by the <a class="reference internal" href="gmt.conf.html#term-time-unit"><span class="xref std std-term">TIME_UNIT</span></a>
+setting [second].  You will need to specify the desired time unit that should be used when
+interpreting your <strong>-E</strong> and <strong>-L</strong> arguments.  The example below for seismicity uses
+actual earthquake times but we use days as the unit as second is too small.</p>
+</div>
 <div class="section" id="the-three-time-functions">
 <h2>The three time-functions<a class="headerlink" href="#the-three-time-functions" title="Permalink to this headline">¶</a></h2>
 <p>Events typically have either a finite length, e.g., the temporal extent of
@@ -461,8 +483,18 @@ its length.</span></p>
 <p>While shown in these examples, the rise, plateau, fade, and coda periods are all optional
 and can be selected or ignored as you wish via <strong>-E</strong>.  You can choose to specify any or none
 of the three time histories.  By default the symbol size is constant, there is no intensity
-variation, and all symbols are opaque.  If trailing text is plotted (requires <strong>-Et</strong>) then
-only a transparency time-function is used.</p>
+variation, and all symbols are opaque.</p>
+<p>If trailing text is plotted (i.e., by selecting <strong>-Et</strong>) then only the transparency time-function
+is used and neither the plateau nor decay periods apply.  The appearance and disappearance of a
+label is thus dictated by an initial (and optional) rise time (during which the label slowly
+becomes fully visible), an normal period (where it remains visible), followed by the optional
+fade period (where the text fades out).  The figure below illustrate the setup:</p>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="_images/psevents_labels.png"><img alt="_images/psevents_labels.png" src="_images/psevents_labels.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Here we show how a label may go from being invisible to reaching full opaqueness
+at the event begin time, staying visible for the given duration, and then finally
+fade away completely. For labels, the plateau and decay periods do not apply.</span></p>
+</div>
 </div>
 <div class="section" id="sorting-the-data">
 <h2>Sorting the data<a class="headerlink" href="#sorting-the-data" title="Permalink to this headline">¶</a></h2>
@@ -520,7 +552,7 @@ gmt end show
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 02, 2020.
+        Last updated on May 10, 2020.
       </span>
 
     </p>

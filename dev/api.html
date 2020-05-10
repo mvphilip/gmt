@@ -94,12 +94,13 @@
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gallery.html">Example Gallery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">GMT Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">GMT Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cookbook.html">GMT Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cookbook.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
@@ -108,13 +109,13 @@
 <li class="toctree-l1"><a class="reference internal" href="users-contrib-symbols.html">Users Symbol Contributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deprecated-defaults.html">Deprecated GMT Defaults Names</a></li>
-<li class="toctree-l1"><a class="reference internal" href="switching.html">Switching between different GMT versions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="migrating.html">Migrating from an earlier GMT version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="switching.html">Switching between different versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrating.html">Migrating from an earlier version</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Classic Mode</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="std-opts-classic.html">Common Options (Classic Mode)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules-classic.html">GMT Modules (Classic Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules-classic.html">Modules (Classic Mode)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Resources</span></p>
 <ul class="current">
@@ -3755,7 +3756,7 @@ contains the grid values.</p>
 <span class="cm">                                                                                                    grid, GMT_GRID_IS_COMPLEX_IMAG = imag part of complex grid */</span>
     <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">mx</span><span class="p">,</span> <span class="n">my</span><span class="p">;</span>             <span class="cm">/* Actual dimensions of the grid in memory, allowing for the padding */</span>
     <span class="kt">size_t</span>       <span class="n">nm</span><span class="p">;</span>                 <span class="cm">/* Number of data items in this grid (n_columns * n_rows) [padding is excluded] */</span>
-    <span class="kt">size_t</span>       <span class="n">size</span><span class="p">;</span>               <span class="cm">/* Actual number of items (not bytes) required to hold this grid (= mx * my) */</span>
+    <span class="kt">size_t</span>       <span class="n">size</span><span class="p">;</span>               <span class="cm">/* Actual number of items (not bytes) required to hold this grid (= mx * my), per band */</span>
     <span class="kt">size_t</span>       <span class="n">n_alloc</span><span class="p">;</span>            <span class="cm">/* Bytes allocated for this grid */</span>
     <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n_bands</span><span class="p">;</span>            <span class="cm">/* Number of bands [1]. Used with IMAGE containers and macros to get ij index from row,col, band */</span>
     <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pad</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>             <span class="cm">/* Padding on west, east, south, north sides [2,2,2,2] */</span>
@@ -3773,7 +3774,9 @@ contains the grid values.</p>
 <p>An image is similar to a grid except it may have more than one layer (i.e., band).
 It is represented by a <a class="reference internal" href="#struct-image"><span class="std std-ref">GMT_IMAGE</span></a> structure that consists of the
 <a class="reference internal" href="#struct-gridheader"><span class="std std-ref">GMT_GRID_HEADER</span></a> structure and an char array <code class="docutils literal notranslate"><span class="pre">data</span></code> that
-contains the image values.  The type of the array is determined by the value of <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p>
+contains the image values.  The type of the array is determined by the value of <code class="docutils literal notranslate"><span class="pre">type</span></code>.
+<strong>Note</strong>: The header <em>size</em> value reflects number of nodes per band, so the actual memory
+allocated will be <em>size * n_bands</em>.</p>
 <div class="highlight-c notranslate" id="struct-image"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">GMT_IMAGE</span> <span class="p">{</span>
     <span class="k">enum</span> <span class="n">GMT_enum_type</span>      <span class="n">type</span><span class="p">;</span>             <span class="cm">/* Data type, e.g. GMT_FLOAT */</span>
     <span class="kt">int</span>                    <span class="o">*</span><span class="n">colormap</span><span class="p">;</span>         <span class="cm">/* Array with color lookup values */</span>
@@ -4106,7 +4109,7 @@ own threads.</td></tr>
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 02, 2020.
+        Last updated on May 10, 2020.
       </span>
 
     </p>

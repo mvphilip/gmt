@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>(4) Flying over topography &mdash; GMT 6.1.0 documentation</title>
+  <title>(7) Spinning Earth showing crustal ages &mdash; GMT 6.1.0 documentation</title>
   
 
   
@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="(5) Control spline gridding via eigenvalues" href="anim05.html" />
-    <link rel="prev" title="(3) Orbiting a static map" href="anim03.html" /> 
+    <link rel="next" title="(8) One year (2018) of Pacific seismicity events" href="anim08.html" />
+    <link rel="prev" title="(6) Demonstrate aliasing by sampling a chirp" href="anim06.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,12 +94,13 @@
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../gallery.html">Example Gallery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">GMT Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">GMT Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cookbook.html">GMT Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cookbook.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
@@ -108,13 +109,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../users-contrib-symbols.html">Users Symbol Contributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deprecated-defaults.html">Deprecated GMT Defaults Names</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../switching.html">Switching between different GMT versions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../migrating.html">Migrating from an earlier GMT version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../switching.html">Switching between different versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrating.html">Migrating from an earlier version</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Classic Mode</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../std-opts-classic.html">Common Options (Classic Mode)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules-classic.html">GMT Modules (Classic Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules-classic.html">Modules (Classic Mode)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Resources</span></p>
 <ul>
@@ -188,16 +189,16 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../gallery.html">Example Gallery</a> &raquo;</li>
+          <li><a href="../animations.html">Animations</a> &raquo;</li>
         
-      <li>(4) Flying over topography</li>
+      <li>(7) Spinning Earth showing crustal ages</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/GenericMappingTools/gmt/edit/master/doc/rst/source/gallery/anim04.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/GenericMappingTools/gmt/edit/master/doc/rst/source/animations/anim07.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -211,66 +212,70 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="flying-over-topography">
-<span id="anim04"></span><h1>(4) Flying over topography<a class="headerlink" href="#flying-over-topography" title="Permalink to this headline">¶</a></h1>
-<p>Our next animation simulates what an imaginary satellite might see as it
-passes in a great circle from New York to Miami at an altitude of 160
-km. We use the general perspective view projection with
-<a class="reference internal" href="../grdimage.html"><span class="doc">grdimage</span></a> and use
-<a class="reference internal" href="../project.html"><span class="doc">project</span></a> to create a great circle path
-between the two cities, sampled every 5 km. The main part of the script
-will make the DVD-quality frames from different view points, draw the
-path on the ground, and add frame numbers to each frame. As this
-animation generates 355 frames we can use 3rd party tools to turn the
-image sequence into a MPEG-4 movie. <strong>Note</strong>: At the moment,
-<a class="reference internal" href="../grdview.html"><span class="doc">grdview</span></a> cannot use general perspective
-view projection to allow “fly-through” animations like Fledermaus; we
-expect to add this functionality in a future version.</p>
+  <div class="section" id="spinning-earth-showing-crustal-ages">
+<span id="anim07"></span><h1>(7) Spinning Earth showing crustal ages<a class="headerlink" href="#spinning-earth-showing-crustal-ages" title="Permalink to this headline">¶</a></h1>
+<p>Animation of a spinning Earth showing the crustal ages from EarthByte for the oceans
+and topographic relief on land, with shading given by the global relief and modified
+by position relative to an artificial sun in the east.  A progress slice is added as well.
+We add a 1 second fade in and a 1 second fade out for the animation</p>
+<ul class="simple">
+<li>DEM:   &#64;earth_relief_02m.grd</li>
+<li>Ages:  &#64;earth_age_02m.grd</li>
+</ul>
+<p>The resulting movie was presented at the Fall 2019 AGU meeting in an eLighting talk:
+P. Wessel, 2019, GMT science animations for the masses, Abstract IN21B-11.
+The finished movie is available in our YouTube channel as well (without fading):
+<a class="reference external" href="https://youtu.be/KfBwQlyjz5w">https://youtu.be/KfBwQlyjz5w</a>
+The movie took ~2.5 hours to render on a 24-core MacPro 2013.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
-<span class="c1">#               GMT ANIMATION 04</span>
 <span class="c1">#</span>
-<span class="c1"># Purpose:      Make custom 480p movie of NY to Miami flight</span>
-<span class="c1"># GMT modules:  set, grdgradient, grdimage, makecpt, project, plot, movie</span>
-<span class="c1"># Unix progs:   cat</span>
-<span class="c1"># Note:         Run with any argument to build movie; otherwise 1st frame is plotted as PS only.</span>
+<span class="c1">## Animation of a spinning Earth showing the crustal ages from EarthByte for the oceans</span>
+<span class="c1"># and topographic relief on land, with shading given by the global relief and modified</span>
+<span class="c1"># by position relative to an artificial sun in the east.  A progress slice is added as well.</span>
+<span class="c1"># We add a 1 second fade in and a 1 second fade out for the animation</span>
+<span class="c1"># DEM:   @earth_relief_02m.grd</span>
+<span class="c1"># Ages:   @earth_age_02m.grd</span>
+<span class="c1"># The resulting movie was presented at the Fall 2019 AGU meeting in an eLighting talk:</span>
+<span class="c1"># P. Wessel, 2019, GMT science animations for the masses, Abstract IN21B-11.</span>
+<span class="c1"># The finished movie is available in our YouTube channel as well (without fading):</span>
+<span class="c1"># https://youtu.be/KfBwQlyjz5w</span>
+<span class="c1"># The movie took ~2.5 hours to render on a 24-core MacPro 2013.</span>
 
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>	<span class="c1"># Just make master PostScript frame 0</span>
-	<span class="nv">opt</span><span class="o">=</span><span class="s2">&quot;-Mps -Fnone&quot;</span>
-	<span class="nv">ps</span><span class="o">=</span>anim04.ps
-<span class="k">else</span>	<span class="c1"># Make movie in MP4 format and a thumbnail animated GIF using every 10th frame</span>
-	<span class="nv">opt</span><span class="o">=</span><span class="s2">&quot;-Fmp4 -A+l+s10&quot;</span>
-<span class="k">fi</span>
-<span class="c1"># 1. Create files needed in the loop</span>
+<span class="c1"># 1. Create background plot and data files needed in the loop</span>
 cat <span class="s">&lt;&lt; EOF &gt; pre.sh</span>
-<span class="s"># Set up flight path</span>
 <span class="s">gmt begin</span>
-<span class="s">	gmt project -C-73.8333/40.75 -E-80.133/25.75 -G10 -Q &gt; flight_path.txt</span>
-<span class="s">	gmt grdcut @earth_relief_02m -R-100/-70/10/50 -GUSEast_Coast.nc</span>
-<span class="s">	gmt grdgradient USEast_Coast.nc -A90 -Nt1 -Gint_US.nc</span>
-<span class="s">	gmt makecpt -Cglobe -H &gt; globe_US.cpt</span>
+<span class="s">	# Set view and sun longitudes</span>
+<span class="s">	gmt math -T-12/372/0.5 -I T 5 SUB = longitudes.txt</span>
+<span class="s">	# Extract a topography CPT</span>
+<span class="s">	gmt makecpt -Cdem2 -T0/6000 -H &gt; z.cpt</span>
+<span class="s">	# Get gradients of the relief from N45E</span>
+<span class="s">	gmt grdgradient @earth_relief_02m -Nt1.2 -A45 -Gintens.grd</span>
 <span class="s">gmt end</span>
 <span class="s">EOF</span>
-<span class="c1"># 2. Set up the main frame script</span>
+<span class="c1"># 2. Set up main script</span>
 cat <span class="s">&lt;&lt; EOF &gt; main.sh</span>
 <span class="s">gmt begin</span>
-<span class="s">	gmt grdimage -JG\${MOVIE_COL0}/\${MOVIE_COL1}/160/210/55/0/36/34/\${MOVIE_WIDTH}+du \</span>
-<span class="s">		-Rg USEast_Coast.nc -Iint_US.nc -Cglobe_US.cpt -X0 -Y0</span>
-<span class="s">	gmt plot -W1p flight_path.txt</span>
+<span class="s">	# Let HSV minimum value go to zero and faint map border</span>
+<span class="s">	gmt set COLOR_HSV_MIN_V 0 MAP_FRAME_PEN=faint</span>
+<span class="s">	# Fake simulation of sun illumination from east added to relief intensities</span>
+<span class="s">	gmt grdmath intens.grd X \${MOVIE_COL1} SUB SIND 0.8 MUL ADD 0.2 SUB = s.nc</span>
+<span class="s">	# Plot age grid first using EarthByte age cpt</span>
+<span class="s">	gmt grdimage @earth_age_02m.grd+s0.01 -Is.nc -C@crustal_age.cpt -JG\${MOVIE_COL0}/15/10.8c -X0 -Y0</span>
+<span class="s">	# Clip to expose land areas only</span>
+<span class="s">	gmt coast -G -Di</span>
+<span class="s">	# Overlay relief over land only using dem cpt</span>
+<span class="s">	gmt grdimage @earth_relief_02m -Is.nc -Cz.cpt</span>
+<span class="s">	# Undo clipping and overlay gridlines</span>
+<span class="s">	gmt coast -Q -B30g30</span>
 <span class="s">gmt end</span>
 <span class="s">EOF</span>
-<span class="c1"># 3. Run the movie</span>
-gmt movie main.sh -C7.2ix4.8ix100 -Nanim04 -Tflight_path.txt -Sbpre.sh -Z -H2 -Lf+o0.1i+f14p,Helvetica-Bold <span class="nv">$opt</span>
-rm -f main.sh pre.sh
+<span class="c1"># 3. Run the movie, requesting a fade in/out via white</span>
+gmt movie main.sh -Sbpre.sh -C10.8cx10.8cx100 -Tlongitudes.txt -Nanim07 -Lf -K+gwhite -H8 -Pa+w1c+Gwhite -Fmp4 -V -W -Zs
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/anim04.png"><img alt="../_images/anim04.png" src="../_images/anim04.png" style="width: 0px;" /></a>
-<div class="figure align-center">
-  <video width="720" height="480" poster="../_images/anim04.png" controls>
-    <source src="../_static/anim04.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p class="caption">Flying over topography.</p>
-</div></div>
+<div class="youtube_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/KfBwQlyjz5w?autoplay=1" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+</iframe></div></div>
 
 
            </div>
@@ -280,10 +285,10 @@ rm -f main.sh pre.sh
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="anim05.html" class="btn btn-neutral float-right" title="(5) Control spline gridding via eigenvalues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="anim08.html" class="btn btn-neutral float-right" title="(8) One year (2018) of Pacific seismicity events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="anim03.html" class="btn btn-neutral float-left" title="(3) Orbiting a static map" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="anim06.html" class="btn btn-neutral float-left" title="(6) Demonstrate aliasing by sampling a chirp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -295,7 +300,7 @@ rm -f main.sh pre.sh
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 02, 2020.
+        Last updated on May 10, 2020.
       </span>
 
     </p>
