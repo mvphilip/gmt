@@ -212,8 +212,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="movie">
-<span id="index-0"></span><h1>movie<a class="headerlink" href="#movie" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="index-0"></span><div class="section" id="movie">
+<h1>movie<a class="headerlink" href="#movie" title="Permalink to this headline">¶</a></h1>
 <p>Create animation sequences and movies</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
@@ -485,8 +485,8 @@ any module-specific option (but not the GMT common options), then exit.</dd>
 <p>Several parameters are automatically assigned and can be used when composing <em>mainscript</em> and the optional
 <em>background</em> and <em>foreground</em> scripts. There are two sets of parameters: Those that are constants
 and those that change with the frame number.  The constants are accessible by all the scripts:
-<strong>MOVIE_WIDTH</strong>: The width of the canvas,
-<strong>MOVIE_HEIGHT</strong>: The height of the canvas,
+<strong>MOVIE_WIDTH</strong>: The width of the canvas (the full movie frame),
+<strong>MOVIE_HEIGHT</strong>: The height of the canvas (the full movie frame),
 <strong>MOVIE_DPU</strong>: The current dots-per-unit,
 <strong>MOVIE_RATE</strong>: The current number of frames per second,
 <strong>MOVIE_NFRAMES</strong>: The total number of frames.
@@ -551,8 +551,15 @@ making a HD movie using the US unit dimensions then a background pink layer woul
 <p>Note the canvas selection via <a class="reference internal" href="gmt.conf.html#term-ps-media"><span class="xref std std-term">PS_MEDIA</span></a>, the matching region and projection, and
 the zero location of the origin.</p>
 </div>
+<div class="section" id="basemap-frames">
+<h2>Basemap Frames<a class="headerlink" href="#basemap-frames" title="Permalink to this headline">¶</a></h2>
+<p>Some map projections will by default draw a <em>fancy</em> map frame; this feature is under the control of <a class="reference internal" href="gmt.conf.html#term-map-frame-type"><span class="xref std std-term">MAP_FRAME_TYPE</span></a>.
+However, whether a <em>fancy</em> or <em>plain</em> frame is actually drawn also depends on the projection center <em>latitude</em>.
+Thus, if your movie varies the projection center latitude by changing the view, you should set the frame
+setting to <em>plain</em> as part of your setup.</p>
+</div>
 <div class="section" id="transparent-images">
-<h2>Transparent images<a class="headerlink" href="#transparent-images" title="Permalink to this headline">¶</a></h2>
+<h2>Transparent Images<a class="headerlink" href="#transparent-images" title="Permalink to this headline">¶</a></h2>
 <p>By default, <strong>movie</strong> will build <em>opaque</em> PNG images which can then be assembled into an animation.
 The vast majority of movies is likely to be made that way. Use the <strong>-F</strong> option’s experimental modifier
 <strong>+t</strong> to make <em>transparent</em> PNG images.  Currently, very few video codecs support
@@ -740,7 +747,7 @@ ffmpeg -i top.mp4 -i bottom.mp4 -filter_complex <span class="nv">vstack</span><s
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 10, 2020.
+        Last updated on May 16, 2020.
       </span>
 
     </p>

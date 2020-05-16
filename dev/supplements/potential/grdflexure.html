@@ -212,18 +212,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="grdflexure">
-<span id="index-0"></span><h1>grdflexure<a class="headerlink" href="#grdflexure" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="index-0"></span><div class="section" id="grdflexure">
+<h1>grdflexure<a class="headerlink" href="#grdflexure" title="Permalink to this headline">¶</a></h1>
 <p>Compute flexural deformation of 3-D surfaces for various rheologies</p>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p><strong>gmt grdflexure</strong> <em>topogrd</em> <a class="reference internal" href="#d"><span> <strong>-D</strong></span></a></strong><em>rm</em>/<em>rl</em>[/<em>ri</em>]/<em>rw</em> <a class="reference internal" href="#e"><span> <strong>-E</strong></span></a></strong><em>Te</em> <a class="reference internal" href="#g"><span> <strong>-G</strong></span></a></strong><em>outgrid</em>
+<p><strong>gmt grdflexure</strong> <em>topogrd</em> <a class="reference internal" href="#d"><span> <strong>-D</strong></span></a></strong><em>rm</em>/<em>rl</em>[/<em>ri</em>]/<em>rw</em> <a class="reference internal" href="#e"><span> <strong>-E</strong></span></a></strong>[<em>Te</em>] <a class="reference internal" href="#g"><span> <strong>-G</strong></span></a></strong><em>outgrid</em>
 [ <a class="reference internal" href="#a"><span> <strong>-A</strong></span></a></strong><em>Nx</em>/<em>Ny</em>/<em>Nxy</em> ]
 [ <a class="reference internal" href="#c"><span> <strong>-C</strong></span></a></strong><strong>p</strong><em>poisson</em> ] [ <a class="reference internal" href="#c"><span> <strong>-C</strong></span></a></strong><strong>y</strong><em>Young</em> ]
 [ <a class="reference internal" href="#f"><span> <strong>-F</strong></span></a></strong><em>nu_a</em>[/<em>h_a</em>/<em>nu_m</em>] ]
 [ <a class="reference internal" href="#l"><span> <strong>-L</strong></span></a></strong><em>list</em> ]
-[ <a class="reference internal" href="#m"><span> <strong>-M</strong></span></a></strong><strong>*tm*
-[ |-N|[**a</strong>|<strong>f</strong>|<strong>m</strong>|<strong>r</strong>|<strong>s</strong>|<em>nx/ny</em>][<strong>+a</strong>|<strong>d</strong>|<strong>h</strong>|<strong>l</strong>][<strong>+e</strong>|<strong>n</strong>|<strong>m</strong>][<strong>+t</strong><em>width</em>][<strong>+v</strong>][<strong>+w</strong>[<em>suffix</em>]][<strong>+z</strong>[<strong>p</strong>]] ]
+[ <a class="reference internal" href="#m"><span> <strong>-M</strong></span></a></strong><em>tm</em> ]
+[ <a class="reference internal" href="#n"><span> <strong>-N</strong></span></a></strong><em>params</em> ]
+[ <a class="reference internal" href="#q"><span> <strong>-Q</strong></span></a></strong> ]
 [ <a class="reference internal" href="#s"><span> <strong>-S</strong></span></a></strong><em>beta</em> ]
 [ <a class="reference internal" href="#t"><span> <strong>-T</strong></span></a></strong><em>t0</em>[/<em>t1</em>/<em>dt</em>]|<em>file</em>[<strong>+l</strong>] ]
 [ <a class="reference internal" href="#v"><span> <strong>-V</strong></span></a></strong>[<em>level</em>] ]
@@ -265,11 +266,13 @@ assumed to equal the load density), and water or air.  If <em>ri</em> differs fr
 then it defaults to <em>rl</em>.</dd>
 </dl>
 <dl class="docutils" id="e">
-<dt><strong>-E</strong><em>Te</em></dt>
+<dt><strong>-E</strong>[<em>Te</em>]</dt>
 <dd>Sets the elastic plate thickness (in meter); append <strong>k</strong> for km.
 If the elastic thickness exceeds 1e10 it will be interpreted as
 a flexural rigidity D (by default D is computed from <em>Te</em>, Young’s
-modulus, and Poisson’s ratio; see <strong>-C</strong> to change these values).</dd>
+modulus, and Poisson’s ratio; see <strong>-C</strong> to change these values).
+If just <strong>-E</strong> is given and <strong>-F</strong> is used we will return a purely viscous
+response with or without an asthenospheric layer.</dd>
 </dl>
 <dl class="docutils" id="g">
 <dt><strong>-G</strong><em>outfile</em></dt>
@@ -303,6 +306,11 @@ the thickness of the asthenosphere (<em>h_a</em>) and the lower mantle
 viscosity (<em>nu_m</em>), with the first viscosity now being that of
 the asthenosphere. Give viscosities in Pa*s. If used, give the
 thickness of the asthenosphere in meter; append <strong>k</strong> for km.</dd>
+</dl>
+<dl class="docutils" id="l">
+<dt><strong>-L</strong><em>list</em></dt>
+<dd>Write the names and evaluation times of all grids that were created
+to the text file <em>list</em>. Requires <strong>-T</strong>.</dd>
 </dl>
 <dl class="docutils" id="n">
 <dt><strong>-N</strong>[<strong>a</strong>|<strong>f</strong>|<strong>m</strong>|<strong>r</strong>|<strong>s</strong>|<em>nx/ny</em>][<strong>+a</strong>|<strong>d</strong>|<strong>h</strong>|<strong>l</strong>][<strong>+e</strong>|<strong>n</strong>|<strong>m</strong>][<strong>+t</strong><em>width</em>][<strong>+v</strong>][<strong>+w</strong>[<em>suffix</em>]][<strong>+z</strong>[<strong>p</strong>]]</dt>
@@ -351,16 +359,17 @@ default we write the real and imaginary components to
 <em>ingrid</em>_mag.<em>ext</em> and <em>ingrid</em>_phase.<em>ext</em>.</p>
 </dd>
 </dl>
-<dl class="docutils" id="l">
-<dt><strong>-L</strong><em>list</em></dt>
-<dd>Write the names and evaluation times of all grids that were created
-to the text file <em>list</em>. Requires <strong>-T</strong>.</dd>
-</dl>
 <dl class="docutils" id="m">
 <dt><strong>-M</strong><em>tm</em></dt>
 <dd>Specify a viscoelastic model in conjunction with an elastic plate
 thickness specified via <strong>-E</strong>.  Append the Maxwell time <em>tm</em> for the
 viscoelastic model (in years); add <strong>k</strong> for kyr and <strong>M</strong> for Myr.</dd>
+</dl>
+<dl class="docutils" id="q">
+<dt><strong>-Q</strong></dt>
+<dd>Do not make any flexure calculations but instead take the chosen transfer function
+given the parameters you selected and evaluate it for a range of wavenumbers and
+times; see the note on transfer functions below.</dd>
 </dl>
 <dl class="docutils" id="s">
 <dt><strong>-S</strong><em>beta</em></dt>
@@ -429,6 +438,17 @@ meters, select <strong>-f</strong><a class="reference internal" href="../../gmt.
 consider projecting the grid file onto a rectangular coordinate system
 using <a class="reference internal" href="../../grdproject.html"><span class="doc">grdproject</span></a>.</p>
 </div>
+<div class="section" id="transfer-functions">
+<h2>Transfer Functions<a class="headerlink" href="#transfer-functions" title="Permalink to this headline">¶</a></h2>
+<p>If <strong>-Q</strong> is given we write the transfer functions T(k,t) to 7 separate files for
+7 different Te values (1, 2, 5, 10, 20, 50, and 100 km). The first two columns are
+always wavelength in km and wavenumber (in 1/m) for a 1:1:3000 km range. The transfer
+functions are evaluated for 12 different response times: 1k, 2k, 5k, 10k, 20k, 50k,
+100k, 200k, 500k, 1M, 2M, and 5M years. For a purely elastic response function
+we only write the transfer function once per elastic thickness in column 3.  The 7 files are named
+grdflexure_transfer_function_te_<em>te</em>_km.txt where <em>te</em> is replaced by the 7 elastic thicknesses
+in km (and 0 if <strong>-E</strong>0 was used for a viscous response only).</p>
+</div>
 <div class="section" id="plate-flexure-notes">
 <h2>Plate Flexure Notes<a class="headerlink" href="#plate-flexure-notes" title="Permalink to this headline">¶</a></h2>
 <p>The FFT solution to plate flexure requires the infill density to equal
@@ -440,7 +460,8 @@ the plate flexure is solved for using the infill density as the effective load d
 the amplitudes are adjusted by the factor <em>A</em> = sqrt ((rm - ri)/(rm - rl)), which is
 the theoretical difference in amplitude due to a point load using the two different
 load densities.  The approximation is very good but breaks down for large
-loads on weak plates, a fairy uncommon situation.</p>
+loads on weak plates, a fairy uncommon situation.  The firmoviscous solutions were
+derived following Nakada [1986] and Cathles [1975].</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
@@ -457,10 +478,17 @@ specified rheological values, try</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure -T1M <span class="o">=</span>l.lis -D3300/2800/2800/1000 -E5k -Gflx/smt_fv_%03.1f_%s.nc -F2e20 -Nf+a
 </pre></div>
 </div>
+<p>To just compute the firmoviscous response functions using the specified rheological values, try:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure -D3300/2800/2800/1000 -Q -F2e20
+</pre></div>
+</div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>Cathles, L. M., 1975, <em>The viscosity of the earth’s mantle</em>, Princeton University Press.</p>
+<p>Nakada, M., 1986, Holocene sea levels in oceanic islands: Implications for the rheological
+structure of the Earth’s mantle, <em>Tectonophysics, 121</em>, 263–276,
+<a class="reference external" href="http://dx.doi.org/10.1016/0040-1951(86)90047-8">http://dx.doi.org/10.1016/0040-1951(86)90047-8</a>.</p>
 <p>Wessel. P., 2001, Global distribution of seamounts inferred from gridded Geosat/ERS-1 altimetry,
 J. Geophys. Res., 106(B9), 19,431-19,441,
 <a class="reference external" href="http://dx.doi.org/10.1029/2000JB000083">http://dx.doi.org/10.1029/2000JB000083</a>.</p>
@@ -470,7 +498,9 @@ of Hawaii plume flux, <em>Geophys. J. Int., 204(2)</em>, 932-947,
 </div>
 <div class="section" id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="../../gmt.html"><span class="doc">gmt</span></a>, <a class="reference internal" href="../../grdfft.html"><span class="doc">grdfft</span></a>,
+<p><a class="reference internal" href="../../gmt.html"><span class="doc">gmt</span></a>,
+<a class="reference internal" href="gmtflexure.html"><span class="doc">gmtflexure</span></a>,
+<a class="reference internal" href="../../grdfft.html"><span class="doc">grdfft</span></a>,
 <a class="reference internal" href="gravfft.html"><span class="doc">gravfft</span></a>
 <a class="reference internal" href="../../grdmath.html"><span class="doc">grdmath</span></a>, <a class="reference internal" href="../../grdproject.html"><span class="doc">grdproject</span></a>,
 <a class="reference internal" href="grdseamount.html"><span class="doc">grdseamount</span></a></p>
@@ -500,7 +530,7 @@ of Hawaii plume flux, <em>Geophys. J. Int., 204(2)</em>, 932-947,
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 10, 2020.
+        Last updated on May 16, 2020.
       </span>
 
     </p>
