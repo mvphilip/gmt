@@ -354,7 +354,7 @@ resolution given the chosen map scale. [Default is <strong>l</strong> in classic
 and <strong>a</strong> in modern mode].</dd>
 </dl>
 <dl class="docutils" id="e">
-<dt><strong>-E</strong><em>code1,code2,…</em>[<strong>+l</strong>|<strong>L</strong>][<strong>+g</strong><em>fill</em>][<strong>+p</strong><em>pen</em>]</dt>
+<dt><strong>-E</strong><em>code1,code2,…</em>[<strong>+l</strong>|<strong>L</strong>][<strong>+g</strong><em>fill</em>][<strong>+p</strong><em>pen</em>][<strong>+z</strong>]</dt>
 <dd>Select painting or dumping country polygons from the Digital Chart of the World.
 This is another dataset independent of GSHHG and hence the <strong>-A</strong> and <strong>-D</strong> options do not apply.
 Append one or more comma-separated countries using the
@@ -370,7 +370,8 @@ Finally, you can append <strong>+l</strong>|<strong>+L</strong> to <strong>-E</s
 repeat if more than one continent is requested.
 Append <strong>+p</strong><em>pen</em> to draw polygon outlines [no outline] and
 <strong>+g</strong><em>fill</em> to fill them [no fill].  One of <strong>+p</strong>|<strong>g</strong> must be
-specified unless <strong>-M</strong> is in effect, in which case only one <strong>-E</strong> option can be given.
+specified unless <strong>-M</strong> is in effect, in which case only one <strong>-E</strong> option can be given;
+append <strong>+z</strong> to place the country code in the segment headers via <strong>-Z</strong><em>code</em> settings.
 Otherwise, you may repeat <strong>-E</strong> to give different groups of items their own pen/fill settings.
 If neither <strong>-J</strong> nor <strong>-M</strong> are set then we just print the <strong>-R</strong><em>wesn</em> string.</dd>
 </dl>
@@ -747,7 +748,7 @@ Institute, Lensfield Road, Cambridge CB2 1ER, United Kingdom.</p>
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 16, 2020.
+        Last updated on May 23, 2020.
       </span>
 
     </p>

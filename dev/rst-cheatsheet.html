@@ -136,6 +136,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#codes">Codes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#images">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#math">Math</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging GMT</a></li>
@@ -374,6 +375,14 @@ gmt end
 <p class="caption"><span class="caption-text">Figure caption</span></p>
 </div>
 </div>
+<div class="section" id="math">
+<h2>Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h2>
+<p>reST also supports LaTeX-style math.</p>
+<p>This is an inline math <span class="math notranslate nohighlight">\(x^2+y^2=z^2\)</span>.</p>
+<p>For long equations, use the <code class="docutils literal notranslate"><span class="pre">math</span></code> directive:</p>
+<div class="math notranslate nohighlight">
+\[\gamma = \sqrt{(\alpha^2 + \beta^2)}\]</div>
+</div>
 </div>
 <div style="float: right; width:49%"><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Formatting text
 ===============
@@ -490,6 +499,7 @@ Link to a GMT parameter :term:`FONT_TITLE`.
 
 
 
+
 Codes
 =====
 
@@ -508,6 +518,21 @@ Use the ``figure`` directive to include images:
    :width: 90%
 
    Figure caption
+
+
+
+Math
+====
+
+reST also supports LaTeX-style math.
+
+This is an inline math :math:`x^2+y^2=z^2`.
+
+For long equations, use the ``math`` directive:
+
+.. math::
+
+   \gamma = \sqrt{(\alpha^2 + \beta^2)}
 </pre></div>
 </div>
 </div></div>
@@ -536,7 +561,7 @@ Use the ``figure`` directive to include images:
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 16, 2020.
+        Last updated on May 23, 2020.
       </span>
 
     </p>

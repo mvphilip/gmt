@@ -162,7 +162,7 @@ to parameters that vary with the job counter: **BATCH_JOB**\ : The current job n
 The name prefix unique to the current job (i.e., *prefix*\ _\ **BATCH_TAG**), Furthermore, if a *timefile*
 was given then variables **BATCH_COL0**\ , **BATCH_COL1**\ , etc. are also set, yielding one variable per
 column in *timefile*.  If *timefile* has trailing text then that text can be accessed via the variable
-**BATCH_TEXT**, and if word-splitting was explicitly requested by **+w* modifier to **-T** then the trailing
+**BATCH_TEXT**, and if word-splitting was explicitly requested by **+w** modifier to **-T** then the trailing
 text is also split into individual word parameters **BATCH_WORD0**\ , **BATCH_WORD1**\ , etc. **Note**: Any
 product(s) made by the processing scripts should be named using **BATCH_NAME** as their name prefix as these
 will be automatically moved up to the starting directory upon completion.
@@ -237,7 +237,7 @@ Examples
 
 We extract a subset of bathymetry for the Gulf of Guinea from the 2x2 arc minute resolution Earth DEM and compute
 Gaussian filtered high-pass grids using filter widths ranging from 10 to 200 km in steps of 10 km. When the grids
-are all completed we determine the standard deviation in the resul.  To replicate our setup, try::
+are all completed we determine the standard deviation in the result.  To replicate our setup, try::
 
     cat << EOF > pre.sh
     gmt begin
@@ -258,7 +258,7 @@ are all completed we determine the standard deviation in the resul.  To replicat
     gmt end show
     EOF
     gmt batch main.sh -Sbpre.sh -Sfpost.sh -Twidths.txt -Nfilter -V -Z
-    
+
 Of course, the syntax of how variables are used vary according to the scripting language. Here, we actuallly
 build the pre.sh, main.sh, and post.sh scripts on the fly, hence we need to escape any variables (since they
 start with a dollar sign that we need to be written verbatim). At the end of the execution we find 20 grids

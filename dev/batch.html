@@ -361,7 +361,7 @@ to parameters that vary with the job counter: <strong>BATCH_JOB</strong>: The cu
 The name prefix unique to the current job (i.e., <em>prefix</em>_<strong>BATCH_TAG</strong>), Furthermore, if a <em>timefile</em>
 was given then variables <strong>BATCH_COL0</strong>, <strong>BATCH_COL1</strong>, etc. are also set, yielding one variable per
 column in <em>timefile</em>.  If <em>timefile</em> has trailing text then that text can be accessed via the variable
-<strong>BATCH_TEXT</strong>, and if word-splitting was explicitly requested by <strong>+w* modifier to **-T</strong> then the trailing
+<strong>BATCH_TEXT</strong>, and if word-splitting was explicitly requested by <strong>+w</strong> modifier to <strong>-T</strong> then the trailing
 text is also split into individual word parameters <strong>BATCH_WORD0</strong>, <strong>BATCH_WORD1</strong>, etc. <strong>Note</strong>: Any
 product(s) made by the processing scripts should be named using <strong>BATCH_NAME</strong> as their name prefix as these
 will be automatically moved up to the starting directory upon completion.</p>
@@ -429,7 +429,7 @@ have to wait very long to see the result.  Once things are working you can beef 
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>We extract a subset of bathymetry for the Gulf of Guinea from the 2x2 arc minute resolution Earth DEM and compute
 Gaussian filtered high-pass grids using filter widths ranging from 10 to 200 km in steps of 10 km. When the grids
-are all completed we determine the standard deviation in the resul.  To replicate our setup, try:</p>
+are all completed we determine the standard deviation in the result.  To replicate our setup, try:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; pre.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">    gmt math -o0 -T10/200/10 T = widths.txt</span>
@@ -492,7 +492,7 @@ jobs using all available cores and launches new jobs as old ones complete.</p>
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 16, 2020.
+        Last updated on May 23, 2020.
       </span>
 
     </p>

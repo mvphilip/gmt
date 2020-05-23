@@ -217,7 +217,7 @@
 <p>The Generic Mapping Tools data processing and display software package</p>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>GMT is a collection of public-domain Unix tools that allows you to
+<p>GMT is a collection of freely available command-line tools under the GNU LGPL that allows you to
 manipulate x,y and x,y,z data sets (filtering, trend fitting, gridding,
 projecting, etc.) and produce illustrations ranging from
 simple x-y plots, via contour maps, to artificially illuminated surfaces
@@ -945,7 +945,7 @@ only the <strong>-p</strong> option. In the latter case a perspective view of th
 no third dimension.</p>
 <dl class="docutils" id="u-full">
 <dt><strong>-U</strong>[<em>label</em>][<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>/<em>dy</em>]</dt>
-<dd>Draw the GMT Unix System time stamp on the plot.
+<dd>Draw the GMT system time stamp on the plot.
 By appending <strong>+j</strong><em>just</em> [BL] and/or <strong>+o</strong><em>dx/dy</em> [-54p/-54p], the
 user may specify the justification of the stamp and where the stamp
 should fall on the page relative to lower left corner of the plot.
@@ -1200,26 +1200,33 @@ of latitude type (<a class="reference internal" href="gmt.conf.html#term-proj-au
 calculations is also controlled by method (<a class="reference internal" href="gmt.conf.html#term-proj-geodesic"><span class="xref std std-term">PROJ_GEODESIC</span></a>).</dd>
 </dl>
 <dl class="docutils" id="l-full">
-<dt><strong>-l</strong>[<em>label</em>][<strong>+d</strong><em>pen</em>][<strong>+f</strong><em>font</em>][<strong>+g</strong><em>gap</em>][<strong>+h</strong><em>header</em>][<strong>+j</strong><em>just</em>][<strong>+l</strong>[<em>code</em>/]<em>txt</em>][<strong>+n</strong><em>cols</em>][<strong>+s</strong><em>size</em>][<strong>+v</strong>[<em>pen</em>]][<strong>+w</strong><em>width</em>][<strong>+x</strong><em>scale</em>]</dt>
+<dt><strong>-l</strong>[<em>label</em>][<strong>+D</strong><em>pen</em>][<strong>+G</strong><em>gap</em>][<strong>+H</strong><em>header</em>][<strong>+L</strong>[<em>code</em>/]<em>txt</em>][<strong>+N</strong><em>cols</em>][<strong>+S</strong><em>size</em>][<strong>+V</strong>[<em>pen</em>]][<strong>+f</strong><em>font</em>][<strong>+g</strong><em>fill</em>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>off</em>][<strong>+p</strong><em>pen</em>][<strong>+s</strong><em>scale</em>][<strong>+w</strong><em>width</em>]</dt>
 <dd>Add a map legend entry to the session legend information file for the
 current plot.  Optionally append a text <em>label</em> to describe the entry.
 Several modifiers allow further changes to the legend (to be built
-when <a class="reference internal" href="legend.html"><span class="doc">legend</span></a> is called): Use <strong>+d</strong> to draw a horizontal line before the
-legend entry is placed [no line], <strong>+f</strong> to set the font used for the legend header [<a class="reference internal" href="gmt.conf.html#term-font-title"><span class="xref std std-term">FONT_TITLE</span></a>],
-<strong>+g</strong> to add some vertical space [0], <strong>+h</strong> to add a legend header [no header],
-<strong>+j</strong> to set placement of the legend [TR], <strong>+l</strong> to set a line text; prepend
-a horizontal justification code <strong>L</strong>, <strong>C</strong>, or <strong>R</strong> [<strong>C</strong>], <strong>+n</strong> to change the number of columns used to
-set the following legend items [1], <strong>+s</strong> to override the size of the
-current symbol for the legend or set a length if plotting a line or contour [same as plotted],
-<strong>+v</strong> to start and <strong>+v</strong><em>pen</em> to stop drawing vertical line from
-previous to current horizontal line [no vertical line], <strong>+w</strong> to set legend width [auto],
-and <strong>+x</strong><em>scale</em> to resize all symbol and length sizes in the legend.  Default pen is
-given by <a class="reference internal" href="gmt.conf.html#term-map-default-pen"><span class="xref std std-term">MAP_DEFAULT_PEN</span></a>.  Note that <strong>+h</strong>, <strong>+j</strong>, <strong>+w</strong>, and <strong>+x</strong>
-will only take effect if appended to the very first <strong>-l</strong> option for a plot.  The <strong>+n</strong> modifier,
+when <a class="reference internal" href="legend.html"><span class="doc">legend</span></a> is called): Use <strong>+D</strong> to draw a horizontal line before the
+legend entry is placed [no line], <strong>+G</strong> to add some vertical space [0],
+<strong>+H</strong> to add a legend header [no header], <strong>+L</strong> to set a line text; prepend
+a horizontal justification code <strong>L</strong>, <strong>C</strong>, or <strong>R</strong> [<strong>C</strong>], <strong>+N</strong>
+to change the number of columns used to set the following legend items [1],
+<strong>+S</strong> to override the size of the current symbol for the legend or set a
+length if plotting a line or contour [same as plotted], and
+<strong>+V</strong> to start and <strong>+v</strong><em>pen</em> to stop drawing vertical line from
+previous to current horizontal line [no vertical line].  In addition, several
+lower-case modifiers can be set to affect the legend: Use
+<strong>+f</strong> to set the font used for the legend header [<a class="reference internal" href="gmt.conf.html#term-font-title"><span class="xref std std-term">FONT_TITLE</span></a>],
+<strong>+g</strong> to set the fill used for the legend frame [white],
+<strong>+j</strong> to set placement of the legend [TR],
+<strong>+o</strong> to set the offset from legend frame to anchor point [0.2c],
+<strong>+p</strong> to set the pen used for the legend frame [1p],
+<strong>+s</strong><em>scale</em> to resize all symbol and length sizes in the legend, and
+<strong>+w</strong><em>width</em> to set legend frame width [auto].
+Default pen is given by <a class="reference internal" href="gmt.conf.html#term-map-default-pen"><span class="xref std std-term">MAP_DEFAULT_PEN</span></a>.
+Note that <strong>+H</strong>, <strong>+g</strong>, <strong>+j</strong>, <strong>+o</strong>, <strong>+p</strong>, <strong>+w</strong>, and <strong>+s</strong>
+will only take effect if appended to the very first <strong>-l</strong> option for a plot.  The <strong>+N</strong> modifier,
 if appended to the first <strong>-l</strong> option, affects the legend width (unless set via <strong>+w</strong>); otherwise it
 just subdivides the available width among the specified columns.
-The automatic legend has a fixed white background with a solid black pen outline and offset 0.2 cm from the map frame.
-The modifiers largely reflect legend codes described in <a class="reference internal" href="legend.html"><span class="doc">legend</span></a>, which provide more details and
+The upper-case modifiers reflect legend codes described in <a class="reference internal" href="legend.html"><span class="doc">legend</span></a>, which provide more details and
 customization.  If <strong>legend</strong> is not called explicitly we will call it implicitly when finishing the plot
 via <a class="reference internal" href="end.html"><span class="doc">end</span></a>.</dd>
 </dl>
@@ -1589,7 +1596,7 @@ GMT documentation site <a class="reference external" href="https://docs.generic-
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 16, 2020.
+        Last updated on May 23, 2020.
       </span>
 
     </p>

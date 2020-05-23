@@ -532,13 +532,15 @@ differently per frame (using parameters in the <em>timefile</em>) and displaying
 <p>As you can see from <strong>-C</strong>, unless you specified a custom format you are given a canvas size that is either 24 x 13.5 cm (16:9)
 or 24 x 18 cm (4:3).  If your <a class="reference internal" href="gmt.conf.html#term-proj-length-unit"><span class="xref std std-term">PROJ_LENGTH_UNIT</span></a> setting is inch then the custom canvas sizes are just
 slightly (1.6%) larger than the corresponding SI sizes (9.6 x 5.4” or 9.6 x 7.2”); this has no effect on the size of the movie
-frames but allow us to use good sizes that work well with the dpu chosen.  You should compose your plots using
+frames but allow us to use good sizes that work well with the <em>dpu</em> chosen.  You should compose your plots using
 the given canvas size, and <strong>movie</strong> will make proper conversions of the canvas to image pixel dimensions. It is your responsibility
 to use <strong>-X -Y</strong> to allow for suitable margins and any positioning of items on the canvas.  To minimize processing time it is
 recommended that any static part of the movie be considered either a static background (to be made once by <em>background</em>) and/or
 a static foreground (to be made once by <em>foreground</em>); <strong>movie</strong> will then assemble these layers per frame.  Also, any computation of
 static data files to be used in the loop over frames can be produced by <em>background</em>.  Any data or variables that depend on the
-frame number must be computed or set by <em>mainscript</em> or provided via the parameters as discussed above.</p>
+frame number must be computed or set by <em>mainscript</em> or provided via the parameters as discussed above.  <strong>Note</strong>: Using
+the variables <strong>MOVIE_WIDTH</strong> or <strong>MOVIE_HIGHT</strong> to set plot dimensions may lead to clipping against the canvas since these are also the
+exact canvas dimensions.</p>
 </div>
 <div class="section" id="external-postscript-layers">
 <h2>External <em>PostScript</em> Layers<a class="headerlink" href="#external-postscript-layers" title="Permalink to this headline">¶</a></h2>
@@ -747,7 +749,7 @@ ffmpeg -i top.mp4 -i bottom.mp4 -filter_complex <span class="nv">vstack</span><s
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 16, 2020.
+        Last updated on May 23, 2020.
       </span>
 
     </p>
