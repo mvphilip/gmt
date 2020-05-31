@@ -1645,7 +1645,9 @@ For vectors the same principles apply:</p>
 <p>where <code class="docutils literal notranslate"><span class="pre">V</span></code> is the <a class="reference internal" href="#struct-vector"><span class="std std-ref">GMT_VECTOR</span></a> created by <a class="reference internal" href="#gmt-create-data">GMT_Create_Data</a>, <code class="docutils literal notranslate"><span class="pre">col</span></code> is the vector
 column in question, <code class="docutils literal notranslate"><span class="pre">type</span></code> is one of the
 recognized data <a class="reference internal" href="#tbl-types"><span class="std std-ref">types</span></a> used for this vector, and <code class="docutils literal notranslate"><span class="pre">vector</span></code> is
-a pointer to this custom vector.
+a pointer to this custom vector.  In addition, <code class="docutils literal notranslate"><span class="pre">type</span></code> may be also <strong>GMT_DATETIME</strong>, in which case
+we expect an array of strings with ISO datetime strings and we do the conversion to internal
+GMT time and allocate a vector to hold the result in the given <code class="docutils literal notranslate"><span class="pre">col</span></code>.
 To extract a custom vector from an output <a class="reference internal" href="#struct-vector"><span class="std std-ref">GMT_VECTOR</span></a> you can use</p>
 <blockquote id="gmt-get-vector">
 <div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">GMT_Get_Vector</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">API</span><span class="p">,</span> <span class="k">struct</span> <span class="n">GMT_VECTOR</span> <span class="o">*</span><span class="n">V</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">col</span><span class="p">);</span>
@@ -4109,7 +4111,7 @@ own threads.</td></tr>
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 23, 2020.
+        Last updated on May 31, 2020.
       </span>
 
     </p>

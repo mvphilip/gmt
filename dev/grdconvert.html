@@ -221,6 +221,7 @@
 [ <a class="reference internal" href="#n"><span> <strong>-N</strong></span></a></strong> ]
 [ <a class="reference internal" href="#r"><span> <strong>-R</strong></span></a></strong><em>region</em> ]
 [ <a class="reference internal" href="#v"><span> <strong>-V</strong></span></a></strong>[<em>level</em>] ]
+[ <a class="reference internal" href="#z"><span> <strong>-Z</strong></span></a></strong>[<strong>+s</strong><em>factor</em>][<strong>+o</strong><em>offset</em>] ]
 [ <strong>-f</strong><a class="reference internal" href="gmt.html#f-full"><span class="std std-ref">flags</span></a> ]
 [ <strong>--PAR</strong>=<em>value</em> ]</p>
 <p><strong>Note:</strong> No space is allowed between the option flag and the associated arguments.</p>
@@ -299,6 +300,17 @@ only applies to native grids and is ignored for netCDF output.</dd>
 <dl class="docutils" id="v">
 <dt><strong>-V</strong>[<em>level</em>] <a class="reference internal" href="gmt.html#v-full"><span class="std std-ref">(more …)</span></a></dt>
 <dd>Select verbosity level [<strong>w</strong>].  </dd>
+</dl>
+<dl class="docutils" id="z">
+<dt><strong>-Z</strong>[<strong>+s</strong><em>factor</em>][<strong>+o</strong><em>offset</em>]</dt>
+<dd>Use to subtract <em>offset</em> from the data and then multiply the results by
+<em>factor</em> before writing the output file [1/0]. <strong>Note</strong>: This
+<em>changes</em> the values in the grid.  In contrast, while options to supply
+a scale and offset via the <strong>+s</strong> and <strong>+o</strong> modifiers in a file
+name also adjust the data accordingly they also set the scale and
+offset in the metadata, so upon reading the new file you recover
+the original range.  Typically, those options are used to enable
+packing of data via the use of an integer format (see table).</dd>
 </dl>
 <dl class="docutils">
 <dt><strong>-f</strong>[<strong>i</strong>|<strong>o</strong>]<em>colinfo</em> <a class="reference internal" href="gmt.html#f-full"><span class="std std-ref">(more …)</span></a></dt>
@@ -538,7 +550,7 @@ image.nc, assuming the range in image.nc is 0-1 and we need 0-255, run</p>
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 23, 2020.
+        Last updated on May 31, 2020.
       </span>
 
     </p>

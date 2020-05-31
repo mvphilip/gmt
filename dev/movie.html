@@ -616,7 +616,7 @@ to named files.</p>
 </div>
 <div class="section" id="progress-indicators">
 <h2>Progress Indicators<a class="headerlink" href="#progress-indicators" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="_images/GMT_movie_progress.png"><img alt="_images/GMT_movie_progress.png" src="_images/GMT_movie_progress.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">The six types of movie progress indicators.  All have default sizes, placements, colors and pens (shown)
 but these can be overridden by the corresponding modifiers (see below).</span></p>
@@ -644,7 +644,7 @@ If no size is specified (<strong>+w</strong>) then we default to 5% of canvas wi
 </div>
 <div class="section" id="title-sequence-and-fading">
 <h2>Title Sequence and Fading<a class="headerlink" href="#title-sequence-and-fading" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="_images/GMT_title_fade.png"><img alt="_images/GMT_title_fade.png" src="_images/GMT_title_fade.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">The fade-level (0 means black, 100 means normal visibility) for the complete movie, including
 an optional title sequence.</span></p>
@@ -698,10 +698,23 @@ high-resolution movies on the GMT <a class="reference external" href="https://ww
 <h2>Other Movie Formats<a class="headerlink" href="#other-movie-formats" title="Permalink to this headline">¶</a></h2>
 <p>As configured, <strong>movie</strong> only offers the MP4 and WebM formats for movies.  The conversion is performed by the
 tool <a class="reference external" href="https://www.ffmpeg.org/">FFmpeg</a>, which has more codecs and processing options than there are children in China.
-If you wish to run FFmpeg with other options, select mp4 and run <strong>movie</strong> with verbose information on (<strong>-Vi</strong>).
+If you wish to run FFmpeg with other options, run <strong>movie</strong> with one of the two video formats.
 At the end it will print the FFmpeg command used.  You can copy, paste, and modify this command to
 select other codecs, bit-rates, and arguments.  You can also use the PNG sequence as input to tools such
 as QuickTime Player, iMovie, MovieMaker, and other commercial programs to make a movie that way.</p>
+</div>
+<div class="section" id="remaking-movie-with-existing-png-frames">
+<h2>Remaking Movie with Existing PNG Frames<a class="headerlink" href="#remaking-movie-with-existing-png-frames" title="Permalink to this headline">¶</a></h2>
+<p>Perhaps you made your movie and then decided you want to change the frame rate or adjust something else in
+how the movie is put together from all the still images.  If you kept all the frame images then
+you do not have to rerun the whole render process.  Assuming you want a MP4 movie and that you
+want to rerun just the ffmpeg command, here is an example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -loglevel warning -f image2 -framerate <span class="m">24</span> -y -i <span class="s2">&quot;mydir/myimages_%04d.png&quot;</span> -vcodec libx264 -pix_fmt yuv420p mymovie.mp4
+</pre></div>
+</div>
+<p>This command is also written out when movie performs this step.
+For other movie formats you will need to consult the <a class="reference external" href="https://www.ffmpeg.org/">FFmpeg</a> documentation.
+<strong>Note</strong>: On Windows, the percentage character is special (like the dollar sign under shells) so you will need to enter two (%%).</p>
 </div>
 <div class="section" id="manipulating-multiple-movies">
 <h2>Manipulating Multiple Movies<a class="headerlink" href="#manipulating-multiple-movies" title="Permalink to this headline">¶</a></h2>
@@ -749,7 +762,7 @@ ffmpeg -i top.mp4 -i bottom.mp4 -filter_complex <span class="nv">vstack</span><s
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 23, 2020.
+        Last updated on May 31, 2020.
       </span>
 
     </p>

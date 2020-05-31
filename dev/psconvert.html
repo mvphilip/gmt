@@ -419,7 +419,8 @@ file extension. So, if output is tif <strong>-Tt</strong> the world file is a
 .tfw, for jpeg we have a .jgw and so on. This option automatically
 sets <strong>-A</strong> <strong>-P</strong>.</p>
 <p>Use <strong>-W+k</strong> to create a minimalist KML file that allows loading the
-image in GoogleEarth. Note that for this option the image must be in
+image in GoogleEarth. Note that for this option to work it is necessary that the postscript
+image must have been created with <strong>-JX</strong> or <strong>-Jx</strong> cartesian projection of
 geographical coordinates. If not, a warning is issued but the KML
 file is created anyway. Several modifier options are available to
 customize the KML file in the form of <strong>+</strong><em>opt</em> strings. Append
@@ -635,7 +636,7 @@ use it.</p>
         
         &copy; Copyright 2020, The GMT Team.
       <span class="lastupdated">
-        Last updated on May 23, 2020.
+        Last updated on May 31, 2020.
       </span>
 
     </p>
